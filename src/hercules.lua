@@ -419,7 +419,8 @@ local function main()
             end
         until success or attempts >= 3
 
-        local output_file = options.overwrite and file_path or file_path:gsub("%.lua$", "_obfuscated.lua")
+        local suffix = config.settings.output_suffix
+        local output_file = options.overwrite and file_path or file_path:gsub("%.lua$", suffix)
         local out_file_handle = assert(io.open(output_file, "w"))
         out_file_handle:write(obfuscated_code)
         out_file_handle:close()
