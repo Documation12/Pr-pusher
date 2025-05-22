@@ -90,7 +90,7 @@ local function printcliresult(input, output, time, options)
         size_diff_percent = "N/A"
     end
 
-    local line = colors.white .. string.rep("=", 65) .. colors.reset
+    local line = colors.white .. string.rep("═", 65) .. colors.reset
     print("\n" .. line)
     print(BANNER)
     print(colors.white .. "Obfuscation Complete!" .. colors.reset)
@@ -360,11 +360,11 @@ local function main()
     if options.folder_mode then
         local findCommand
         if package.config:sub(1,1) == "\\" then
-            -- windows: quote wildcard
+            -- windows
             local pattern = input .. "\\*.lua"
             findCommand = string.format('dir %q /b /s 2>nul', pattern)
         else
-            -- mac/linux: quote path
+            -- mac/linux
             findCommand = string.format('find %q -type f -name "*.lua"', input)
         end
         local p = io.popen(findCommand)
